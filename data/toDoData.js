@@ -1,6 +1,0 @@
-const toDos = [
-    {
-        "title": '',
-        "text": ''
-    }
-]

@@ -2,6 +2,7 @@
 const db = require('../db/db');
 const fs = require('fs');
 const toDosArray = require('../db/db');
+const uniqueID = require('uniqid');
 
 // Routing
 module.exports = (app) => {
@@ -9,9 +10,16 @@ module.exports = (app) => {
 
     app.post('/api/notes', (req, res) => {
         const newToDo = req.body;
+        newToDoID = uniqueID();
         console.log(newToDo);
         toDosArray.push(newToDo);
         res.json(newToDo);
+    });
+
+    app.delete('/api/notes', (req, res) => {
+        toDosArray.delete
+
+        res.json({ ok: true });
     });
 };
 
