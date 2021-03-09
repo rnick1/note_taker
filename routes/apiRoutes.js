@@ -1,8 +1,8 @@
-// Loads the data.
+// Dependencies:
 const db = require('../db/db.json');
 const uniqueID = require('uniqid');
 
-// Routing
+// Routing details:
 module.exports = (app) => {
     app.get('/api/notes', (req, res) => {
         res.json(db);
@@ -16,12 +16,12 @@ module.exports = (app) => {
         res.json(newToDo);
     });
 
-    app.delete("/api/notes/:id", function (req, res) {
-        db.forEach(function (element, index) {
+    app.delete("/api/notes/:id", (req, res) => {
+        db.forEach((element, index) => {
             if (element.id === req.params.id) {
-                db.splice(index, 1)
-                res.json(db)
-            }
-        })
+                db.splice(index, 1);
+                res.json(db);
+            };
+        });
     });
-}
+};
