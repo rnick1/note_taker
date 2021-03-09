@@ -1,28 +1,25 @@
 // Loads the data.
-const notes = require('../db/db.json');
+const db = require('../db/db');
 const fs = require('fs');
+const toDosArray = require('../db/db');
 
 // Routing
 module.exports = (app) => {
-    app.get('/api/notes', (req, res) => {
-        fs.readFile('../db/db.json', function (err, data) {
-            if (err) return console.log(err);
-            res.json(data)
-        })
-    });
-    app.post('/data/todos', (req, res) => {
-        // if (tableData.length < 5) {
-        //     tableData.push(req.body);
-        //     res.json(true);
-        // } else {
-        //     waitListData.push(req.body);
-        //     res.json(false);
-        // }
-    });
-    app.post('/api/clear', (req, res) => {
-        tableData.length = 0;
-        waitListData.length = 0;
+    app.get('/api/notes', (req, res) => res.json(db));
 
-        res.json({ ok: true });
+    app.post('/api/notes', (req, res) => {
+        const newToDo = req.body;
+        console.log(newToDo);
+        toDosArray.push(newToDo);
+        res.json(newToDo);
     });
 };
+
+// // Routing
+// module.exports = (app) => {
+//     app.get('/api/notes', (req, res) => {
+//         fs.readFile('../db/db', function (err, data) {
+//             if (err) return console.log(err);
+//             res.json(data);
+//         });
+//     });
